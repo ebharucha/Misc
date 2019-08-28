@@ -1,0 +1,10 @@
+	period_name	temperature	short_description	long_description
+0	Tonight	Low: 74 °F	ChanceT-storms	Tonight: A 30 percent chance of showers and thunderstorms, mainly after midnight.  Mostly cloudy, with a low around 74. South wind 3 to 6 mph. 
+1	Wednesday	High: 85 °F	ChanceT-storms	Wednesday: A 50 percent chance of showers and thunderstorms.  Mostly cloudy, with a high near 85. South wind 6 to 10 mph. 
+2	WednesdayNight	Low: 75 °F	ChanceT-storms	Wednesday Night: A 50 percent chance of showers and thunderstorms, mainly before 2am.  Mostly cloudy, with a low around 75. Southwest wind around 9 mph. 
+3	Thursday	High: 87 °F	Slight ChanceT-storms thenChanceShowers	Thursday: A 30 percent chance of showers and thunderstorms, mainly after 2pm.  Mostly sunny, with a high near 87. West wind 7 to 9 mph. 
+4	ThursdayNight	Low: 69 °F	ChanceShowers	Thursday Night: A chance of showers and thunderstorms.  Mostly cloudy, with a low around 69. North wind around 7 mph.  Chance of precipitation is 40%.
+5	Friday	High: 78 °F	Partly Sunny	Friday: Partly sunny, with a high near 78.
+6	FridayNight	Low: 65 °F	Partly Cloudy	Friday Night: Partly cloudy, with a low around 65.
+7	Saturday	High: 78 °F	Sunny	Saturday: Sunny, with a high near 78.
+8	SaturdayNight	Low: 66 °F	Mostly Clear	Saturday Night: Mostly clear, with a low around 66.
