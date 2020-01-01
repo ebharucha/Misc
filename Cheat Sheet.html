@@ -13084,6 +13084,21 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Useful-links">Useful links<a class="anchor-link" href="#Useful-links">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a href="https://chrisalbon.com/">Chris Albon - Tips &amp; Tricks</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Regex">Regex<a class="anchor-link" href="#Regex">&#182;</a></h1>
 </div>
 </div>
@@ -13119,6 +13134,202 @@ div#notebook {
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;The quick brown fox jumps over the lazy dog &amp; = ##&#39;</span>
+
+<span class="c1"># Match all alphanumeric</span>
+<span class="nb">print</span> <span class="p">([</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;\w&#39;</span><span class="p">,</span> <span class="n">w</span><span class="p">)])</span>
+
+<span class="n">dates</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;1/11/2020&#39;</span><span class="p">,</span> <span class="s1">&#39;11/1/2020&#39;</span><span class="p">,</span> <span class="s1">&#39;Jan-1-2020&#39;</span><span class="p">,</span> <span class="s1">&#39;1/11/20&#39;</span><span class="p">]</span>
+<span class="nb">print</span> <span class="p">([</span><span class="n">date</span> <span class="k">for</span> <span class="n">date</span> <span class="ow">in</span> <span class="n">dates</span> <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\w{1,3}[/-]\d{1,2}[/-]\d{2,4}&#39;</span><span class="p">,</span> <span class="n">date</span><span class="p">)])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">time_sentences</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Monday: The doctor&#39;s appointment is at 2:45pm.&quot;</span><span class="p">,</span> 
+                  <span class="s2">&quot;Tuesday: The dentist&#39;s appointment is at 11:30 am.&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;Wednesday: At 7:00pm, there is a basketball game!&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;Thursday: Be back home by 11:15 pm at the latest.&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;Friday: Take the train at 08:10 am, arrive at 09:00am.&quot;</span><span class="p">]</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">time_sentences</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># find the number of characters for each string in df[&#39;text&#39;]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># find the number of tokens for each string in df[&#39;text&#39;]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># find which entries contain the word &#39;appointment&#39;</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;appointment&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># find how many times a digit occurs in each string</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># find all occurances of the digits</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># group and find the hours and minutes</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(\d?\d):(\d\d)&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># replace weekdays with &#39;???&#39;</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\w+day\b&#39;</span><span class="p">,</span> <span class="s1">&#39;???&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># replace weekdays with 3 letter abbrevations</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(\w+day\b)&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">groups</span><span class="p">()[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># create new columns from first match of extracted groups</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(\d?\d):(\d\d)&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># extract the entire time, the hours, the minutes, and the period</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;((\d?\d):(\d\d) ?([ap]m))&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># extract the entire time, the hours, the minutes, and the period with group names</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(?P&lt;time&gt;(?P&lt;hour&gt;\d?\d):(?P&lt;minute&gt;\d\d) ?(?P&lt;period&gt;[ap]m))&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -15136,6 +15347,1298 @@ C:\Users\erb\AppData\Local\Continuum\anaconda3\lib\site-packages\sklearn\base.py
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>LightGBM score on test data = 70.82%
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="NLP">NLP<a class="anchor-link" href="#NLP">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="NLTK">NLTK<a class="anchor-link" href="#NLTK">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="c1"># nltk.download()</span>
+<span class="c1"># from nltk.book import *</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[81]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span> <span class="p">(</span><span class="s1">&#39;data/OldManAndTheSea.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">book_txt</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="n">book_txt</span> <span class="o">=</span> <span class="n">book_txt</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[98]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Word tokenization</span>
+
+<span class="n">words</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">book_txt</span><span class="p">)</span>
+<span class="nb">len</span> <span class="p">(</span><span class="n">words</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">words</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[98]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(5336, 1023)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[96]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Sentence tokenization</span>
+
+<span class="n">sentences</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">sent_tokenize</span><span class="p">(</span><span class="n">book_txt</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">sentences</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">sentences</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[96]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(322, 320)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[113]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sentences</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">words</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[113]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(&#39;good-bye, georgie!&#34;&#39;, [&#39;good-bye&#39;, &#39;,&#39;, &#39;georgie&#39;, &#39;!&#39;, &#34;&#39;&#39;&#34;])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[114]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Ferquency distribution</span>
+<span class="n">dist</span> <span class="o">=</span> <span class="n">FreqDist</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+<span class="n">dist</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[114]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>FreqDist({&#39;,&#39;: 350, &#39;.&#39;: 265, &#34;&#39;&#39;&#34;: 196, &#39;``&#39;: 178, &#39;the&#39;: 168, &#39;to&#39;: 140, &#39;and&#39;: 124, &#39;a&#39;: 123, &#39;i&#39;: 119, &#39;mr.&#39;: 105, ...})</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[100]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Frequent words, where a word lenght is greater than or equal to 3 characters and it occurs more than 5 times</span>
+<span class="n">freq_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">dist</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span> <span class="ow">and</span> <span class="n">dist</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[101]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Stemming</span>
+<span class="n">porter</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">PorterStemmer</span><span class="p">()</span>
+
+<span class="n">stemmed_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">porter</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">freq_words</span><span class="p">]</span>
+<span class="c1"># stemmed_words</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[102]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Lemmatization</span>
+<span class="n">WNLemma</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">WordNetLemmatizer</span><span class="p">()</span>
+
+<span class="n">lemmatized_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">WNLemma</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">freq_words</span><span class="p">]</span>
+<span class="c1"># lemmatized_words</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[116]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">?</span> nltk.pos_tag
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[127]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Part of Speech (POS) tagging</span>
+
+<span class="n">pos_tag</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">pos_tag</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[128]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># NLTK classifier</span>
+
+<span class="kn">from</span> <span class="nn">nltk.classify</span> <span class="k">import</span> <span class="n">NaiveBayesClassifier</span>
+
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">NaiveBayesClassifier</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">training_set</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Classifier accuracy percent:&quot;</span><span class="p">,(</span><span class="n">nltk</span><span class="o">.</span><span class="n">classify</span><span class="o">.</span><span class="n">accuracy</span><span class="p">(</span><span class="n">classifier</span><span class="p">,</span> <span class="n">testing_set</span><span class="p">))</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">classifier</span><span class="o">.</span><span class="n">show_most_informative_features</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Case-Study---Sentiment-Analysis">Case Study - Sentiment Analysis<a class="anchor-link" href="#Case-Study---Sentiment-Analysis">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Data-Prep">Data Prep<a class="anchor-link" href="#Data-Prep">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[130]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Read in the data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/Amazon_Unlocked_Mobile.csv&#39;</span><span class="p">)</span>
+
+<span class="c1"># Sample the data to speed up computation</span>
+<span class="c1"># Comment out this line to match with lecture</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[130]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Product Name</th>
+      <th>Brand Name</th>
+      <th>Price</th>
+      <th>Rating</th>
+      <th>Reviews</th>
+      <th>Review Votes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>394349</th>
+      <td>Sony XPERIA Z2 D6503 FACTORY UNLOCKED Internat...</td>
+      <td>NaN</td>
+      <td>244.95</td>
+      <td>5</td>
+      <td>Very good one! Better than Samsung S and iphon...</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>34377</th>
+      <td>Apple iPhone 5c 8GB (Pink) - Verizon Wireless</td>
+      <td>Apple</td>
+      <td>194.99</td>
+      <td>1</td>
+      <td>The phone needed a SIM card, would have been n...</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>248521</th>
+      <td>Motorola Droid RAZR MAXX XT912 M Verizon Smart...</td>
+      <td>Motorola</td>
+      <td>174.99</td>
+      <td>5</td>
+      <td>I was 3 months away from my upgrade and my Str...</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>167661</th>
+      <td>CNPGD [U.S. Office Extended Warranty] Smartwat...</td>
+      <td>CNPGD</td>
+      <td>49.99</td>
+      <td>1</td>
+      <td>an experience i want to forget</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>73287</th>
+      <td>Apple iPhone 7 Unlocked Phone 256 GB - US Vers...</td>
+      <td>Apple</td>
+      <td>922.00</td>
+      <td>5</td>
+      <td>GREAT PHONE WORK ACCORDING MY EXPECTATIONS.</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[131]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Drop missing values</span>
+<span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Remove any &#39;neutral&#39; ratings equal to 3</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Rating&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">]</span>
+
+<span class="c1"># Encode 4s and 5s as 1 (rated positively)</span>
+<span class="c1"># Encode 1s and 2s as 0 (rated poorly)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Positively Rated&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Rating&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[131]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Product Name</th>
+      <th>Brand Name</th>
+      <th>Price</th>
+      <th>Rating</th>
+      <th>Reviews</th>
+      <th>Review Votes</th>
+      <th>Positively Rated</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>34377</th>
+      <td>Apple iPhone 5c 8GB (Pink) - Verizon Wireless</td>
+      <td>Apple</td>
+      <td>194.99</td>
+      <td>1</td>
+      <td>The phone needed a SIM card, would have been n...</td>
+      <td>1.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>248521</th>
+      <td>Motorola Droid RAZR MAXX XT912 M Verizon Smart...</td>
+      <td>Motorola</td>
+      <td>174.99</td>
+      <td>5</td>
+      <td>I was 3 months away from my upgrade and my Str...</td>
+      <td>3.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>167661</th>
+      <td>CNPGD [U.S. Office Extended Warranty] Smartwat...</td>
+      <td>CNPGD</td>
+      <td>49.99</td>
+      <td>1</td>
+      <td>an experience i want to forget</td>
+      <td>0.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>73287</th>
+      <td>Apple iPhone 7 Unlocked Phone 256 GB - US Vers...</td>
+      <td>Apple</td>
+      <td>922.00</td>
+      <td>5</td>
+      <td>GREAT PHONE WORK ACCORDING MY EXPECTATIONS.</td>
+      <td>1.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>277158</th>
+      <td>Nokia N8 Unlocked GSM Touch Screen Phone Featu...</td>
+      <td>Nokia</td>
+      <td>95.00</td>
+      <td>5</td>
+      <td>I fell in love with this phone because it did ...</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>100311</th>
+      <td>Blackberry Torch 2 9810 Unlocked Phone with 1....</td>
+      <td>BlackBerry</td>
+      <td>77.49</td>
+      <td>5</td>
+      <td>I am pleased with this Blackberry phone! The p...</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>251669</th>
+      <td>Motorola Moto E (1st Generation) - Black - 4 G...</td>
+      <td>Motorola</td>
+      <td>89.99</td>
+      <td>5</td>
+      <td>Great product, best value for money smartphone...</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>279878</th>
+      <td>OtterBox 77-29864 Defender Series Hybrid Case ...</td>
+      <td>OtterBox</td>
+      <td>9.99</td>
+      <td>5</td>
+      <td>I've bought 3 no problems. Fast delivery.</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>406017</th>
+      <td>Verizon HTC Rezound 4G Android Smarphone - 8MP...</td>
+      <td>HTC</td>
+      <td>74.99</td>
+      <td>4</td>
+      <td>Great phone for the price...</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>302567</th>
+      <td>RCA M1 Unlocked Cell Phone, Dual Sim, 5Mp Came...</td>
+      <td>RCA</td>
+      <td>159.99</td>
+      <td>5</td>
+      <td>My mom is not good with new technoloy but this...</td>
+      <td>4.0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[132]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Most ratings are positive (skewed data set)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Positively Rated&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[132]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.7471776686078667</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[133]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">train_test_split</span>
+
+<span class="c1"># Split data into training and test sets</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Reviews&#39;</span><span class="p">],</span> 
+                                                    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Positively Rated&#39;</span><span class="p">],</span> 
+                                                    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[138]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;X_train first entry:</span><span class="si">{X_train.iloc[0]}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">X_train shape: </span><span class="si">{X_train.shape}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>X_train first entry:Everything about it is awesome!
+
+
+X_train shape: (23052,)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="CountVectorizer-(BOW)">CountVectorizer (BOW)<a class="anchor-link" href="#CountVectorizer-(BOW)">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[184]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="k">import</span> <span class="n">CountVectorizer</span>
+
+<span class="c1"># Fit the CountVectorizer to the training data</span>
+<span class="n">vect</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+
+<span class="c1"># Can specify min_df to reduce number of features</span>
+<span class="c1"># In the case below, remove words from vocab which appear in less than 5 documents</span>
+<span class="c1"># vect = CountVectorizer(min_df=5).fit(X_train)  </span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[185]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">vect</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()[::</span><span class="mi">2000</span><span class="p">]</span>  <span class="c1"># Look at every 2,000th feature in the vocabulary</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[185]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;00&#39;,
+ &#39;arroja&#39;,
+ &#39;comapañias&#39;,
+ &#39;dvds&#39;,
+ &#39;golden&#39;,
+ &#39;lands&#39;,
+ &#39;oil&#39;,
+ &#39;razonable&#39;,
+ &#39;smallsliver&#39;,
+ &#39;tweak&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[186]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">vect</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[186]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>19601</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[187]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># transform the documents in the training data to a document-term matrix</span>
+<span class="c1"># Gives BOW representation of X_train. X_test</span>
+<span class="n">X_train_vectorized</span> <span class="o">=</span> <span class="n">vect</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test_vectorized</span> <span class="o">=</span> <span class="n">vect</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="n">X_train_vectorized</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">X_test_vectorized</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[187]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>((23052, 19601), (7685, 19601))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[188]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="k">import</span> <span class="n">LogisticRegression</span>
+
+<span class="c1"># Train the model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_vectorized</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>C:\Users\erb\AppData\Local\Continuum\anaconda3\lib\site-packages\sklearn\linear_model\logistic.py:433: FutureWarning: Default solver will be changed to &#39;lbfgs&#39; in 0.22. Specify a solver to silence this warning.
+  FutureWarning)
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[188]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
+          intercept_scaling=1, max_iter=100, multi_class=&#39;warn&#39;,
+          n_jobs=None, penalty=&#39;l2&#39;, random_state=None, solver=&#39;warn&#39;,
+          tol=0.0001, verbose=0, warm_start=False)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[189]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">roc_auc_score</span>
+
+<span class="c1"># Predict the transformed test documents</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_vectorized</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;AUC: &#39;</span><span class="p">,</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>AUC:  0.8974332776669326
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[190]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># get the feature names as numpy array</span>
+<span class="n">feature_names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vect</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">())</span>
+
+<span class="c1"># Sort the coefficients from the model</span>
+<span class="n">sorted_coef_index</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()</span>
+
+<span class="c1"># Find the 10 smallest and 10 largest coefficients</span>
+<span class="c1"># The 10 largest coefficients are being indexed using [:-11:-1] </span>
+<span class="c1"># so the list returned is in order of largest to smallest</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Smallest Coefs:</span><span class="se">\n</span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">feature_names</span><span class="p">[</span><span class="n">sorted_coef_index</span><span class="p">[:</span><span class="mi">10</span><span class="p">]]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Largest Coefs: </span><span class="se">\n</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">feature_names</span><span class="p">[</span><span class="n">sorted_coef_index</span><span class="p">[:</span><span class="o">-</span><span class="mi">11</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Smallest Coefs:
+[&#39;worst&#39; &#39;terrible&#39; &#39;slow&#39; &#39;junk&#39; &#39;poor&#39; &#39;sucks&#39; &#39;horrible&#39; &#39;useless&#39;
+ &#39;waste&#39; &#39;disappointed&#39;]
+
+Largest Coefs: 
+[&#39;excelent&#39; &#39;excelente&#39; &#39;excellent&#39; &#39;perfectly&#39; &#39;love&#39; &#39;perfect&#39; &#39;exactly&#39;
+ &#39;great&#39; &#39;best&#39; &#39;awesome&#39;]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Term-Frequency-Inverse-Document-Frequency-(Tfidf)">Term Frequency Inverse Document Frequency (Tfidf)<a class="anchor-link" href="#Term-Frequency-Inverse-Document-Frequency-(Tfidf)">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[198]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="k">import</span> <span class="n">TfidfVectorizer</span>
+
+<span class="c1"># Fit the TfidfVectorizer to the training data specifiying a minimum document frequency of 5</span>
+<span class="c1"># Remove words from vocab which appear in less than 5 documents</span>
+<span class="n">vect</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">min_df</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">vect</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">())</span>  <span class="c1"># The num of features reduced to 5442 from 19601</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[198]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5442</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[199]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_train_vectorized</span> <span class="o">=</span> <span class="n">vect</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_vectorized</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">vect</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;AUC: &#39;</span><span class="p">,</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">))</span>  <span class="c1"># Approx same accuracy with fewer features</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>C:\Users\erb\AppData\Local\Continuum\anaconda3\lib\site-packages\sklearn\linear_model\logistic.py:433: FutureWarning: Default solver will be changed to &#39;lbfgs&#39; in 0.22. Specify a solver to silence this warning.
+  FutureWarning)
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>AUC:  0.889951006492175
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[197]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># get the feature names as numpy array</span>
+<span class="n">feature_names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vect</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">())</span>
+
+<span class="c1"># Sort the coefficients from the model</span>
+<span class="n">sorted_tfidf_index</span> <span class="o">=</span> <span class="n">X_train_vectorized</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">toarray</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()</span>
+
+<span class="c1"># Find the 10 smallest and 10 largest coefficients</span>
+<span class="c1"># The 10 largest coefficients are being indexed using [:-11:-1] </span>
+<span class="c1"># so the list returned is in order of largest to smallest</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Smallest tfidf:</span><span class="se">\n</span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">feature_names</span><span class="p">[</span><span class="n">sorted_tfidf_index</span><span class="p">[:</span><span class="mi">10</span><span class="p">]]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Largest tfidf: </span><span class="se">\n</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">feature_names</span><span class="p">[</span><span class="n">sorted_tfidf_index</span><span class="p">[:</span><span class="o">-</span><span class="mi">11</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Smallest tfidf:
+[&#39;61&#39; &#39;printer&#39; &#39;approach&#39; &#39;adjustment&#39; &#39;consequences&#39; &#39;length&#39; &#39;emailing&#39;
+ &#39;degrees&#39; &#39;handsfree&#39; &#39;chipset&#39;]
+
+Largest tfidf: 
+[&#39;unlocked&#39; &#39;handy&#39; &#39;useless&#39; &#39;cheat&#39; &#39;up&#39; &#39;original&#39; &#39;exelent&#39; &#39;exelente&#39;
+ &#39;exellent&#39; &#39;satisfied&#39;]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[201]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># These reviews are treated the same by our current model</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">vect</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="s1">&#39;not an issue, phone is working&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;an issue, phone is not working&#39;</span><span class="p">])))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[0 0]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="n-grams">n-grams<a class="anchor-link" href="#n-grams">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[206]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Fit the CountVectorizer to the training data specifiying a minimum </span>
+<span class="c1"># document frequency of 5 and extracting 1-grams and 2-grams</span>
+<span class="n">vect</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">min_df</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+
+<span class="n">X_train_vectorized</span> <span class="o">=</span> <span class="n">vect</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+
+<span class="nb">len</span><span class="p">(</span><span class="n">vect</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[206]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>29072</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[207]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_vectorized</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">vect</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;AUC: &#39;</span><span class="p">,</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">))</span> <span class="c1"># Slightly higher accuracy</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>C:\Users\erb\AppData\Local\Continuum\anaconda3\lib\site-packages\sklearn\linear_model\logistic.py:433: FutureWarning: Default solver will be changed to &#39;lbfgs&#39; in 0.22. Specify a solver to silence this warning.
+  FutureWarning)
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>AUC:  0.9110661794597458
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[209]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># get the feature names as numpy array</span>
+<span class="n">feature_names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vect</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">())</span>
+
+<span class="c1"># Sort the coefficients from the model</span>
+<span class="n">sorted_coef_index</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()</span>
+
+<span class="c1"># Find the 10 smallest and 10 largest coefficients</span>
+<span class="c1"># The 10 largest coefficients are being indexed using [:-11:-1] </span>
+<span class="c1"># so the list returned is in order of largest to smallest</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Smallest Coefs:</span><span class="se">\n</span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">feature_names</span><span class="p">[</span><span class="n">sorted_coef_index</span><span class="p">[:</span><span class="mi">10</span><span class="p">]]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Largest Coefs: </span><span class="se">\n</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">feature_names</span><span class="p">[</span><span class="n">sorted_coef_index</span><span class="p">[:</span><span class="o">-</span><span class="mi">11</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Smallest Coefs:
+[&#39;no good&#39; &#39;junk&#39; &#39;poor&#39; &#39;slow&#39; &#39;worst&#39; &#39;broken&#39; &#39;not good&#39; &#39;terrible&#39;
+ &#39;defective&#39; &#39;horrible&#39;]
+
+Largest Coefs: 
+[&#39;excellent&#39; &#39;excelente&#39; &#39;excelent&#39; &#39;perfect&#39; &#39;great&#39; &#39;love&#39; &#39;awesome&#39;
+ &#39;no problems&#39; &#39;good&#39; &#39;best&#39;]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[210]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># These reviews are now correctly identified</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">vect</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="s1">&#39;not an issue, phone is working&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;an issue, phone is not working&#39;</span><span class="p">])))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[1 0]
 </pre>
 </div>
 </div>
